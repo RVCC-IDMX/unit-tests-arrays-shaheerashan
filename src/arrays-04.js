@@ -16,7 +16,11 @@
  * ? hint: use Math.abs() to get the absolute value of a number
  */
 function getAbsoluteSum(nums) {
-  // write your code here & return value
+  let sum = 0;
+  nums.forEach((num) => {
+    sum += Math.abs(num);
+  });
+  return sum;
 }
 
 /**
@@ -27,7 +31,7 @@ function getAbsoluteSum(nums) {
  * ? hint: use the filter() array method - https://youtu.be/JY5HUDMudew
  */
 function removeStrings(arr) {
-  // write your code here & return value
+  return [...arr].filter((element) => typeof element !== 'string');
 }
 
 /**
@@ -49,7 +53,9 @@ function removeStrings(arr) {
  * ? hint 2: use the spread operator with Math.min() and Math.max()
  */
 function findMinMax(arr) {
-  // write your code here & return value
+  const min = Math.min(...arr);
+  const max = Math.max(...arr);
+  return [min, max];
 }
 
 /**
@@ -73,7 +79,11 @@ function findMinMax(arr) {
  * ? https://bit.ly/39ASLc0
  */
 function getTelNo(numbers) {
-  // write your code here & return value
+  const copiedArray = [...numbers];
+  copiedArray.splice(6, 0, '-');
+  copiedArray.splice(3, 0, ')', ' ');
+  copiedArray.splice(0, 0, '(');
+  return copiedArray.join('');
 }
 
 /**
@@ -117,9 +127,20 @@ function getTelNo(numbers) {
  * ?
  * ? If you do it a different way, let me know!!!
  * ?
- */
+ */ // eslint-disable-next-line consistent-return
 function getUnmatchedInteger(numbers) {
-  // write your code here & return value
+  const numbersCopy = [...numbers];
+
+  while (numbersCopy.length > 1) {
+    const currentNum = numbersCopy[numbersCopy.length - 1];
+    if (numbersCopy.includes(currentNum * -1)) {
+      const index = numbersCopy.indexOf(currentNum * -1);
+      numbersCopy.splice(index, 1);
+      numbersCopy.pop();
+    } else {
+      return currentNum;
+    }
+  }
 }
 
 module.exports = {
